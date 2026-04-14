@@ -1157,7 +1157,10 @@ audio.volume = DEFAULT_VOL;
   const conn = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
   if (conn && conn.saveData) { vid.style.display = "none"; return; }
   vid.src = window.innerWidth <= 768 ? "bg-mobile.mp4" : "bg-desktop.mp4";
-  vid.play().catch(() => { vid.style.opacity = "0"; });
+  vid.load();
+  vid.addEventListener("canplay", function () {
+    vid.play().catch(() => {});
+  }, { once: true });
 })();
 
 // ── Volume slider ─────────────────────────────────────────────────────────────
