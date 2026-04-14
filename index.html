@@ -562,8 +562,8 @@ html, body {
   gap: 1rem;
   position: relative;
   overflow: hidden;
-  transition: border-radius 0.38s cubic-bezier(0.25,0.8,0.25,1),
-              border-top-color 0.25s ease,
+  transition: border-radius 0.32s cubic-bezier(0.25,0.8,0.25,1) 0.28s,
+              border-top-color 0.25s ease 0.28s,
               box-shadow 0.4s;
 }
 /* when playlist is open — flatten top corners and hide double border line */
@@ -571,6 +571,9 @@ html, body {
   border-top-left-radius: 0;
   border-top-right-radius: 0;
   border-top-color: transparent;
+  transition: border-radius 0.28s cubic-bezier(0.25,0.8,0.25,1) 0s,
+              border-top-color 0.15s ease 0s,
+              box-shadow 0.4s;
 }
 /* shimmer */
 #player-bar::before {
