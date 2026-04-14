@@ -25,6 +25,8 @@ html, body {
   height: 100%;
   overflow: hidden;
   background: #050508;
+  background-image: radial-gradient(ellipse at 30% 20%, #0d0820 0%, transparent 60%),
+                    radial-gradient(ellipse at 70% 80%, #050d18 0%, transparent 60%);
   font-family: 'Outfit', sans-serif;
   color: var(--text-main);
   user-select: none;
@@ -710,7 +712,7 @@ html, body {
 <body>
 
 <!-- Background video -->
-<video id="bg-video" autoplay muted loop playsinline>
+<video id="bg-video" muted loop playsinline preload="none">
   <source src="42197-429661458.mp4" type="video/mp4">
 </video>
 <div id="bg-overlay"></div>
@@ -1137,6 +1139,26 @@ let   currentVol  = DEFAULT_VOL;
 buildPlaylist();
 loadTrack(false);
 audio.volume = DEFAULT_VOL;
+
+// ── Background video — lazy load after page is interactive ────────────────────
+(function () {
+  const vid = document.getElementById("bg-video");
+  if (!vid) return;
+  // Don't autoload on slow connections or data-saver
+  const conn = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+  const slow = conn && (conn.saveData || ["slow-2g","2g"].includes(conn.effectiveType));
+  if (slow) return; // keep gradient fallback
+  const tryPlay = () => {
+    vid.play().catch(() => {
+      vid.style.opacity = "0"; // fail silently, gradient shows through
+    });
+  };
+  if (document.readyState === "complete") {
+    tryPlay();
+  } else {
+    window.addEventListener("load", tryPlay, { once: true });
+  }
+})();
 
 // ── Volume slider ─────────────────────────────────────────────────────────────
 const volSlider = document.getElementById("volume-slider");
