@@ -712,10 +712,7 @@ html, body {
 <body>
 
 <!-- Background video -->
-<video id="bg-video" autoplay muted loop playsinline preload="metadata">
-  <source src="bg-mobile.mp4" type="video/mp4" media="(max-width: 768px)">
-  <source src="bg-desktop.mp4" type="video/mp4">
-</video>
+<video id="bg-video" muted loop playsinline preload="metadata"></video>
 <div id="bg-overlay"></div>
 
 <!-- Main layout: card + label + player как единый блок -->
@@ -1141,15 +1138,14 @@ buildPlaylist();
 loadTrack(false);
 audio.volume = DEFAULT_VOL;
 
-// ── Background video — hide if browser blocks autoplay ────────────────────────
+// ── Background video ──────────────────────────────────────────────────────────
 (function () {
   const vid = document.getElementById("bg-video");
   if (!vid) return;
-  // Data saver: don't even try
   const conn = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
   if (conn && conn.saveData) { vid.style.display = "none"; return; }
-  // If autoplay was blocked by browser — hide gracefully, gradient shows
-  vid.addEventListener("error", () => { vid.style.opacity = "0"; }, { once: true });
+  vid.src = window.innerWidth <= 768 ? "bg-mobile.mp4" : "bg-desktop.mp4";
+  vid.play().catch(() => { vid.style.opacity = "0"; });
 })();
 
 // ── Volume slider ─────────────────────────────────────────────────────────────
