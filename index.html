@@ -724,7 +724,7 @@ html, body {
 <body>
 
 <!-- Background video -->
-<video id="bg-video" muted loop playsinline preload="metadata"></video>
+<video id="bg-video" autoplay muted loop playsinline preload="auto" src="bg-mobile.mp4"></video>
 <div id="bg-overlay"></div>
 
 <!-- Main layout: card + label + player как единый блок -->
@@ -1150,20 +1150,11 @@ buildPlaylist();
 loadTrack(false);
 audio.volume = DEFAULT_VOL;
 
-// ── Background video ──────────────────────────────────────────────────────────
-(function () {
+// ── Background video — switch to desktop quality on large screens ─────────────
+if (window.innerWidth > 768) {
   const vid = document.getElementById("bg-video");
-  if (!vid) return;
-  const conn = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
-  if (conn && conn.saveData) { vid.style.display = "none"; return; }
-  vid.muted = true;
-  vid.src = window.innerWidth <= 768 ? "bg-mobile.mp4" : "bg-desktop.mp4";
-  vid.load();
-  vid.addEventListener("canplay", function () {
-    vid.muted = true;
-    vid.play().catch(() => {});
-  }, { once: true });
-})();
+  if (vid) { vid.src = "bg-desktop.mp4"; vid.load(); }
+}
 
 // ── Volume slider ─────────────────────────────────────────────────────────────
 const volSlider = document.getElementById("volume-slider");
