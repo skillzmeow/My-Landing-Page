@@ -420,6 +420,16 @@ html, body {
     flex-shrink: 0;
     -webkit-transform: translateZ(0); transform: translateZ(0);
   }
+
+  /* Product descriptions — wrap instead of truncate on mobile */
+  .prod-desc {
+    white-space: normal;
+    overflow: visible;
+    text-overflow: clip;
+    font-size: 0.55rem;
+    line-height: 1.4;
+  }
+  .prod-arrow { display: none; }
 }
 
 /* ── Отключаем анимации по user preference ── */
