@@ -673,9 +673,9 @@ html, body {
   if (isTouch) {
     v2.remove();
     v1.muted = true;
-    v1.play().catch(() => {
-      v1.addEventListener("canplay", () => v1.play().catch(() => {}), { once: true });
-    });
+    const tryPlay = () => { if (v1.paused) v1.play().catch(() => {}); };
+    v1.addEventListener("loadedmetadata", tryPlay, { once: true });
+    document.addEventListener("visibilitychange", () => { if (!document.hidden) tryPlay(); });
     return;
   }
 
