@@ -672,6 +672,10 @@ html, body {
 
   if (isTouch) {
     v2.remove();
+    v1.muted = true;
+    v1.play().catch(() => {
+      v1.addEventListener("canplay", () => v1.play().catch(() => {}), { once: true });
+    });
     return;
   }
 
