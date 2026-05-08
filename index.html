@@ -666,14 +666,16 @@ html, body {
 (function() {
   const isTouch = window.matchMedia("(hover: none) and (pointer: coarse)").matches;
   if (isTouch) {
-    window.addEventListener("pageshow", function() {
-      var v = document.getElementById("bg-video");
-      if (!v || !v.paused) return;
-      v.muted = true;
-      v.play().catch(function() {
-        v.addEventListener("canplay", function() { v.play().catch(function(){}); }, { once: true });
-      });
-    });
+    var v = document.getElementById("bg-video");
+    var dbg = document.createElement("div");
+    dbg.style.cssText = "position:fixed;top:10px;left:10px;right:10px;z-index:9999;background:rgba(0,0,0,0.85);color:#0f0;padding:8px;font-size:11px;font-family:monospace;border-radius:6px;";
+    document.body.appendChild(dbg);
+    function upd() {
+      dbg.textContent = "paused:"+v.paused+" rs:"+v.readyState+" err:"+(v.error?v.error.code:"ok")+" dur:"+(v.duration||"?")+" ct:"+v.currentTime.toFixed(1)+" src:"+v.currentSrc.slice(-20);
+    }
+    ["play","pause","error","canplay","waiting","stalled","loadeddata"].forEach(function(e){v.addEventListener(e,upd);});
+    setInterval(upd, 500);
+    upd();
     return;
   }
 
