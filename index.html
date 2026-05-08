@@ -672,8 +672,9 @@ html, body {
   if (isTouch) {
     v2.remove();
     v1.muted = true;
-    v1.load();
-    v1.addEventListener("canplay", () => v1.play(), { once: true });
+    v1.play().catch(() => {
+      v1.addEventListener("canplay", () => v1.play().catch(() => {}), { once: true });
+    });
     return;
   }
 
@@ -684,7 +685,7 @@ html, body {
     v2.muted = true;
     v2.load();
     v1.load();
-    v1.addEventListener("canplay", () => v1.play(), { once: true });
+    v1.addEventListener("canplay", () => v1.play().catch(() => {}), { once: true });
   }
 
   v1.style.transition = "opacity 1.2s ease";
