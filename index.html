@@ -676,6 +676,9 @@ html, body {
     ["play","pause","error","canplay","waiting","stalled","loadeddata"].forEach(function(e){v.addEventListener(e,upd);});
     setInterval(upd, 500);
     upd();
+    v.muted = true;
+    var p = v.play();
+    if (p) p.then(function(){ dbg.textContent += " | PLAYED"; }).catch(function(e){ dbg.textContent += " | ERR:"+e.name+":"+e.message; });
     return;
   }
 
