@@ -317,7 +317,8 @@ html, body {
 
 /* ── Touch ── */
 @media (hover: none) and (pointer: coarse) {
-  #bg-video { filter: none; will-change: auto; }
+  #bg-video { filter: none; transform: none; will-change: auto; }
+  #bg-overlay { backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); }
   .prod-item::before { display: none; }
   .lnk, .prod-item, .p-btn {
     transform: none !important;
