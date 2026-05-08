@@ -667,21 +667,19 @@ html, body {
   const isTouch = window.matchMedia("(hover: none) and (pointer: coarse)").matches;
   if (isTouch) {
     var v = document.getElementById("bg-video");
-    var dbg = document.createElement("div");
-    dbg.style.cssText = "position:fixed;top:10px;left:10px;right:10px;z-index:9999;background:rgba(0,0,0,0.85);color:#0f0;padding:8px;font-size:11px;font-family:monospace;border-radius:6px;";
-    document.body.appendChild(dbg);
-    function upd() {
-      dbg.textContent = "paused:"+v.paused+" rs:"+v.readyState+" err:"+(v.error?v.error.code:"ok")+" dur:"+(v.duration||"?")+" ct:"+v.currentTime.toFixed(1)+" src:"+v.currentSrc.slice(-20);
-    }
-    ["play","pause","error","canplay","waiting","stalled","loadeddata"].forEach(function(e){v.addEventListener(e,upd);});
-    setInterval(upd, 500);
-    upd();
     v.muted = true;
     v.addEventListener("canplay", function() {
-      if (v.paused) {
-        var p = v.play();
-        if (p) p.then(function(){ dbg.textContent += " | PLAYED"; }).catch(function(e){ dbg.textContent += " | ERR:"+e.name; });
-      }
+      if (!v.paused) return;
+      v.play().catch(function() {
+        // Autoplay blocked (e.g. Low Power Mode) — play on first tap
+        var overlay = document.createElement("div");
+        overlay.style.cssText = "position:fixed;inset:0;z-index:9999;cursor:pointer;";
+        document.body.appendChild(overlay);
+        overlay.addEventListener("touchstart", function() {
+          v.play().catch(function(){});
+          overlay.remove();
+        }, { once: true, passive: true });
+      });
     }, { once: true });
     return;
   }
