@@ -538,7 +538,7 @@ html, body {
 <body>
 
 <video id="bg-video"  autoplay muted loop playsinline preload="auto" src="bg-mobile.mp4?v=3"></video>
-<video id="bg-video2" muted      loop playsinline preload="auto" src="bg-mobile.mp4?v=3" style="position:fixed;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;pointer-events:none;will-change:transform;transform:translateZ(0) scale(1.05);backface-visibility:hidden;filter:blur(5px);opacity:0;transition:opacity 1.2s ease;"></video>
+<video id="bg-video2" muted      loop playsinline preload="none" style="position:fixed;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;pointer-events:none;will-change:transform;transform:translateZ(0) scale(1.05);backface-visibility:hidden;filter:blur(5px);opacity:0;transition:opacity 1.2s ease;"></video>
 <div id="bg-overlay"></div>
 
 
@@ -672,10 +672,6 @@ html, body {
 
   if (isTouch) {
     v2.remove();
-    v1.muted = true;
-    v1.play().catch(() => {
-      v1.addEventListener("canplay", () => v1.play().catch(() => {}), { once: true });
-    });
     return;
   }
 
