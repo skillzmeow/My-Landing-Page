@@ -317,7 +317,6 @@ html, body {
 
 /* ── Touch ── */
 @media (hover: none) and (pointer: coarse) {
-  #bg-video { filter: none; transform: none; will-change: auto; }
   .prod-item::before { display: none; }
   .lnk, .prod-item, .p-btn {
     transform: none !important;
@@ -672,10 +671,6 @@ html, body {
 
   if (isTouch) {
     v2.remove();
-    v1.muted = true;
-    const tryPlay = () => { if (v1.paused) v1.play().catch(() => {}); };
-    v1.addEventListener("loadedmetadata", tryPlay, { once: true });
-    document.addEventListener("visibilitychange", () => { if (!document.hidden) tryPlay(); });
     return;
   }
 
