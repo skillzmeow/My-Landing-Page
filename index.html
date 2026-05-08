@@ -83,19 +83,6 @@ html, body {
   padding: 2rem 1.8rem 1.8rem;
 }
 
-/* soft blur zone — fades to transparent at all edges via mask */
-#card::before {
-  content: '';
-  position: absolute;
-  inset: -40px;
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  mask-image: radial-gradient(ellipse 75% 80% at 50% 50%, black 25%, transparent 72%);
-  -webkit-mask-image: radial-gradient(ellipse 75% 80% at 50% 50%, black 25%, transparent 72%);
-  pointer-events: none;
-  z-index: 0;
-}
-
 #card > * { position: relative; z-index: 1; }
 
 /* ── Name — big, free-floating ── */
