@@ -665,7 +665,17 @@ html, body {
 // ── Background video: crossfade on desktop, pure HTML autoplay on mobile ─────
 (function() {
   const isTouch = window.matchMedia("(hover: none) and (pointer: coarse)").matches;
-  if (isTouch) return; // mobile: rely entirely on HTML autoplay, no JS
+  if (isTouch) {
+    window.addEventListener("pageshow", function() {
+      var v = document.getElementById("bg-video");
+      if (!v || !v.paused) return;
+      v.muted = true;
+      v.play().catch(function() {
+        v.addEventListener("canplay", function() { v.play().catch(function(){}); }, { once: true });
+      });
+    });
+    return;
+  }
 
   const v1 = document.getElementById("bg-video");
 
