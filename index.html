@@ -476,8 +476,7 @@ html, body {
 </head>
 <body>
 
-<video id="bg-video"  autoplay muted loop playsinline preload="auto" src="232267.mp4"></video>
-<video id="bg-video2" muted      loop playsinline preload="auto" src="232267.mp4" style="position:fixed;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;pointer-events:none;will-change:transform;transform:translateZ(0) scale(1.05);backface-visibility:hidden;filter:blur(5px);opacity:0;transition:opacity 1.2s ease;"></video>
+<video id="bg-video" autoplay muted loop playsinline preload="auto" src="bg-mobile.mp4"></video>
 <div id="bg-overlay"></div>
 
 
@@ -612,17 +611,46 @@ html, body {
 
 <script>
 
-// ── Background video + crossfade (десктоп) / simple loop (мобайл) ───────────
+// ── Background video: crossfade on desktop, pure HTML autoplay on mobile ─────
 (function() {
   const isTouch = window.matchMedia("(hover: none) and (pointer: coarse)").matches;
-  const v1 = document.getElementById("bg-video");
-  const v2 = document.getElementById("bg-video2");
-
   if (isTouch) {
-    v2.remove();
+    var v = document.getElementById("bg-video");
+    v.muted = true;
+    v.addEventListener("canplay", function() {
+      if (!v.paused) return;
+      v.play().catch(function() {
+        // Autoplay blocked (e.g. Low Power Mode) — play on first tap
+        var overlay = document.createElement("div");
+        overlay.style.cssText = "position:fixed;inset:0;z-index:9999;cursor:pointer;";
+        document.body.appendChild(overlay);
+        overlay.addEventListener("touchstart", function() {
+          v.play().catch(function(){});
+          overlay.remove();
+        }, { once: true, passive: true });
+      });
+    }, { once: true });
     return;
   }
 
+  const v1 = document.getElementById("bg-video");
+
+  // swap to desktop quality
+  v1.src = "bg-desktop.mp4";
+  v1.muted = true;
+
+  // create v2 clone for crossfade
+  const v2 = document.createElement("video");
+  v2.id = "bg-video2";
+  v2.muted = true;
+  v2.loop = true;
+  v2.playsInline = true;
+  v2.setAttribute("playsinline", "");
+  v2.src = "bg-desktop.mp4";
+  v2.style.cssText = "position:fixed;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;pointer-events:none;will-change:transform;transform:translateZ(0) scale(1.05);backface-visibility:hidden;filter:blur(2px);opacity:0;transition:opacity 1.2s ease;";
+  v1.after(v2);
+
+  v1.load();
   v1.style.transition = "opacity 1.2s ease";
   let busy = false;
 
@@ -651,8 +679,7 @@ html, body {
     });
   }
 
-  if (v1.readyState >= 1) watch(v1, v2);
-  else v1.addEventListener("loadedmetadata", () => watch(v1, v2), { once: true });
+  v1.addEventListener("canplay", () => { v1.play().catch(() => {}); watch(v1, v2); }, { once: true });
 })();
 
 // ════════════════════════════════════════
