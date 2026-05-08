@@ -671,13 +671,20 @@ html, body {
 
   if (isTouch) {
     v2.remove();
+    v1.muted = true;
+    v1.load();
+    v1.addEventListener("canplay", () => v1.play(), { once: true });
     return;
   }
 
   if (window.innerWidth > 768) {
     v1.src = "bg-desktop.mp4";
     v2.src = "bg-desktop.mp4";
+    v1.muted = true;
+    v2.muted = true;
+    v2.load();
     v1.load();
+    v1.addEventListener("canplay", () => v1.play(), { once: true });
   }
 
   v1.style.transition = "opacity 1.2s ease";
