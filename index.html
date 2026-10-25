@@ -378,7 +378,7 @@ let T = [], cur = 0, peaksCache = {}, actx = null;
 
 function parse(file) {
   const base = file.replace(/\.mp3$/i, '');
-  const m = base.match(/^(.*?)\s+(\d{2,3})(?:\s+([a-g]#?(?:min|maj)))?\s+nika00\s*(.*)$/i);
+  const m = base.match(/^(.*?)\s+(\d{2,3})(?:\s+([a-g]#?(?:min|maj)))?\s+[(\[]?@?nika00[)\]]?\s*(.*)$/i);
   if (!m) return { file, t: base, bpm: '', key: '', ft: '' };
   return { file, t: m[1], bpm: m[2], key: (m[3] || '').replace(/^[a-g]/, c => c.toUpperCase()), ft: m[4] || '' };
 }
