@@ -2,947 +2,469 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<meta name="theme-color" content="#050508">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>NIKA00 — Beats, Loops & Soundkits</title>
+<meta name="description" content="NIKA00 — Matvii from Kyiv, Ukraine. Loops, beats &amp; soundkits.">
+<meta name="theme-color" content="#060709">
 <meta name="color-scheme" content="dark">
-<title>NIKA00 — Beats &amp; Music</title>
+<meta property="og:title" content="NIKA00 — Beats, Loops &amp; Soundkits">
+<meta property="og:description" content="Also known as Matvii from Kyiv, Ukraine. Make loops, beats &amp; soundkits.">
+<meta property="og:url" content="https://nika00.com/">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='-36 -36 72 72'%3E%3Crect x='-36' y='-36' width='72' height='72' rx='18' fill='%23131418'/%3E%3Cpath fill='%23e4e5e9' transform='translate(0 2) scale(.82)' d='M0 26C-6 20-30 6-30-10C-30-22-20-28-12-28C-6-28-2-24 0-18C2-24 6-28 12-28C20-28 30-22 30-10C30 6 6 20 0 26Z'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400;500;600;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700;800&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-:root {
-  --glass-bg:        rgba(255, 255, 255, 0.03);
-  --glass-border:    rgba(255, 255, 255, 0.08);
-  --glass-highlight: rgba(255, 255, 255, 0.2);
-  --text-main:       rgba(255, 255, 255, 0.92);
-  --text-muted:      rgba(255, 255, 255, 0.52);
-  --clr-btn-bg:      rgba(34, 197, 94, 0.07);
-  --clr-btn-border:  rgba(34, 197, 94, 0.18);
-  --clr-btn-top:     rgba(34, 197, 94, 0.3);
-  --clr-btn-hover:   rgba(34, 197, 94, 0.14);
-  --clr-progress:    #22c55e;
-  --clr-play-bg:     rgba(34, 197, 94, 0.18);
-  --clr-play-hover:  rgba(34, 197, 94, 0.3);
-  --clr-name-from:   #ffffff;
-  --clr-name-to:     #22c55e;
+:root{
+  --bg:#060709;
+  --tile:linear-gradient(180deg,rgba(255,255,255,.045),rgba(255,255,255,.012));
+  --line:rgba(255,255,255,.07);
+  --line-hi:rgba(255,255,255,.14);
+  --text:#ecedf0;
+  --muted:rgba(236,237,240,.55);
+  --faint:rgba(236,237,240,.3);
+  --acc:#a8b4ff;
 }
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:80px}
+html,body{background:var(--bg);color:var(--text);font-family:'Geist',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+body{min-height:100vh;background:
+  radial-gradient(1100px 600px at 50% -200px,rgba(120,130,255,.11),transparent 70%),
+  radial-gradient(700px 500px at 100% 60%,rgba(80,200,200,.04),transparent 70%),var(--bg)}
+a{color:inherit;text-decoration:none}
+.mono{font-family:'Geist Mono',monospace}
+svg{flex-shrink:0}
 
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+/* ── shared tile ── */
+.tile{position:relative;border-radius:22px;background:var(--tile);border:1px solid var(--line);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.05),0 20px 50px -20px rgba(0,0,0,.6);padding:20px;min-width:0;overflow:hidden;transition:border-color .25s}
+.tile::before{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;
+  background:radial-gradient(420px circle at var(--mx,50%) var(--my,-300px),rgba(255,255,255,.055),transparent 45%)}
+.tile:hover{border-color:var(--line-hi)}
+.lab{display:flex;justify-content:space-between;align-items:center;font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:14px}
 
-html, body {
-  height: 100%;
-  overflow: hidden;
-  background: #050508;
-  background-image: radial-gradient(ellipse at 30% 20%, #0d0820 0%, transparent 60%),
-                    radial-gradient(ellipse at 70% 80%, #050d18 0%, transparent 60%);
-  font-family: 'Outfit', sans-serif;
-  color: var(--text-main);
-  user-select: none;
-  -webkit-user-select: none;
-}
+/* ── heart ── */
+.icon{display:grid;place-items:center;background:linear-gradient(160deg,#2a2b30 0%,#121317 55%,#0c0d10 100%);
+  box-shadow:0 30px 60px -10px rgba(0,0,0,.8),inset 0 1px 0 rgba(255,255,255,.1),inset 0 -1px 0 rgba(0,0,0,.6)}
+.icon svg{overflow:visible;filter:drop-shadow(0 4px 6px rgba(0,0,0,.6))}
+.icon use{fill:url(#metal)}
+.half{transform-box:fill-box;transform-origin:50% 100%;transition:transform .7s cubic-bezier(.5,0,.2,1)}
+.broken .hl{transform:translate(-4px,1px) rotate(-16deg);transition:transform .32s cubic-bezier(.2,1.6,.4,1)}
+.broken .hr{transform:translate(4px,1px) rotate(16deg);transition:transform .32s cubic-bezier(.2,1.6,.4,1)}
+.icon.shake{animation:shake .32s}
+@keyframes shake{20%{transform:translateX(-2px)}40%{transform:translateX(2px)}60%{transform:translateX(-1px)}80%{transform:translateX(1px)}}
 
-/* ── Video background ── */
-#bg-video {
-  position: fixed;
-  inset: 0;
-  width: 100%; height: 100%;
-  object-fit: cover;
-  z-index: 0;
-  pointer-events: none;
-  will-change: transform;
-  transform: translateZ(0) scale(1.05);
-  backface-visibility: hidden;
-  filter: blur(5px);
-}
-#bg-overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.55);
-  z-index: 1;
-  pointer-events: none;
-}
+/* ── link rows (shared) ── */
+.lk{display:flex;align-items:center;gap:12px;padding:11px 10px;margin:0 -10px;border-radius:12px;font-size:14px;transition:background .15s}
+.lk:hover{background:rgba(255,255,255,.045)}
+.ic{width:32px;height:32px;border-radius:9px;display:grid;place-items:center;background:rgba(255,255,255,.05);border:1px solid var(--line);color:var(--muted);flex-shrink:0;transition:.2s}
+.lk:hover .ic{color:var(--text)}
+.ic svg{width:15px;height:15px}
+.lk .h{color:var(--faint);font-size:12px;margin-left:auto;font-family:'Geist Mono'}
+.lk .ar{color:var(--faint);transition:transform .2s,color .2s}
+.lk:hover .ar{transform:translate(2px,-2px);color:var(--text)}
+.cov{width:38px;height:38px;border-radius:10px;object-fit:cover;flex-shrink:0;border:1px solid var(--line)}
+.sub{display:block;font-size:11.5px;color:var(--faint);margin-top:1px}
 
-/* ── Glass panel — used only for prod-glass and player ── */
-.glass-panel {
-  backdrop-filter: blur(24px) saturate(120%);
-  -webkit-backdrop-filter: blur(24px) saturate(120%);
-  background: linear-gradient(145deg, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0.01) 100%);
-  border: 1px solid var(--glass-border);
-  border-top: 1px solid var(--glass-highlight);
-  border-left: 1px solid var(--glass-highlight);
-  box-shadow: 0 20px 40px rgba(0,0,0,0.45), inset 0 0 20px rgba(255,255,255,0.02);
-  border-radius: 24px;
-  position: relative;
-}
+/* ═════════ DESKTOP SITE ═════════ */
+.mobile{display:none}
+.container{max-width:1120px;margin:0 auto;padding:0 28px}
 
-/* ── Card — D style: layout container with feathered blur behind ── */
-#card {
-  position: relative;
-  z-index: 10;
-  width: min(34rem, calc(100vw - 2.5rem));
-  padding: 2rem 1.8rem 1.8rem;
-}
+nav{position:sticky;top:0;z-index:20;backdrop-filter:blur(18px) saturate(140%);-webkit-backdrop-filter:blur(18px) saturate(140%);
+  background:rgba(6,7,9,.6);border-bottom:1px solid var(--line)}
+nav .container{display:flex;align-items:center;height:64px;gap:28px}
+.brand{display:flex;align-items:center;gap:10px;font-weight:700;letter-spacing:-.03em;font-size:16px}
+.brand .icon{width:30px;height:30px;border-radius:9px;box-shadow:none}
+.brand .icon svg{width:17px;height:17px}
+nav .menu{display:flex;gap:4px;margin-left:12px}
+nav .menu a{padding:7px 12px;border-radius:9px;font-size:13.5px;color:var(--muted);transition:.2s}
+nav .menu a:hover{color:var(--text);background:rgba(255,255,255,.05)}
+nav .right{margin-left:auto;display:flex;gap:8px}
+.btn-s{display:inline-flex;align-items:center;gap:8px;padding:8px 14px;border-radius:10px;font-size:13px;font-weight:500;border:1px solid var(--line-hi);background:rgba(255,255,255,.04);transition:.2s}
+.btn-s:hover{background:rgba(255,255,255,.09)}
+.btn-p{display:inline-flex;align-items:center;gap:8px;padding:12px 20px;border-radius:12px;font-size:14px;font-weight:600;background:#f3f4f6;color:#08090b;transition:.2s}
+.btn-p:hover{background:#fff;transform:translateY(-1px)}
+.btn-g{display:inline-flex;align-items:center;gap:8px;padding:12px 20px;border-radius:12px;font-size:14px;font-weight:500;border:1px solid var(--line-hi);background:rgba(255,255,255,.03);transition:.2s}
+.btn-g:hover{background:rgba(255,255,255,.08)}
+.btn-s svg,.btn-p svg,.btn-g svg{width:15px;height:15px}
 
-#card > * { position: relative; z-index: 1; }
+/* hero */
+.hero{display:grid;grid-template-columns:1.25fr 1fr;align-items:center;gap:40px;padding:64px 0 16px}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:12px;color:var(--muted);padding:6px 12px 6px 8px;border-radius:30px;border:1px solid var(--line);background:rgba(255,255,255,.03);margin-bottom:26px}
+.eyebrow i{width:7px;height:7px;border-radius:50%;background:#4ade80;box-shadow:0 0 10px #4ade80}
+.hero h1{font-size:clamp(72px,10vw,128px);font-weight:800;letter-spacing:-.06em;line-height:.85;
+  background:linear-gradient(180deg,#fff 30%,#8d909a);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p{font-size:18px;line-height:1.55;color:var(--muted);margin:26px 0 34px;max-width:440px}
+.hero p b{color:var(--text);font-weight:500}
+.cta{display:flex;gap:10px}
+.hero-art{display:grid;place-items:center;position:relative}
+.hero-art::before{content:"";position:absolute;width:420px;height:420px;border-radius:50%;background:radial-gradient(circle,rgba(168,180,255,.14),transparent 65%)}
+.hero-art .icon{width:280px;height:280px;border-radius:72px;position:relative}
+.hero-art .icon svg{width:150px;height:150px}
+.stats{display:flex;gap:40px;margin-top:44px;padding-top:28px;border-top:1px solid var(--line)}
+.stats b{display:block;font-size:24px;font-weight:600;letter-spacing:-.03em}
+.stats span{font-size:12.5px;color:var(--faint)}
 
-/* ── Name — big, free-floating ── */
-.card-name {
-  font-size: clamp(4rem, 11vw, 6.2rem);
-  font-weight: 900;
-  line-height: 0.88;
-  letter-spacing: -0.02em;
-  background: linear-gradient(135deg, var(--clr-name-from) 30%, var(--clr-name-to) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  margin-bottom: 0.85rem;
-  transition: background 0.4s;
-}
+/* sections */
+section.sec{padding:28px 0}
+.sec-h{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:18px;gap:20px}
+.sec-h h2{font-size:32px;font-weight:700;letter-spacing:-.045em;line-height:1}
+.sec-h p{color:var(--muted);font-size:14.5px;margin-top:8px}
+.sec-h .k{font-family:'Geist Mono';font-size:12px;color:var(--faint)}
 
-.card-sub {
-  font-size: 0.82rem;
-  font-weight: 300;
-  line-height: 1.65;
-  color: var(--text-muted);
-  margin-bottom: 1.4rem;
-}
+/* player */
+.pl{display:grid;grid-template-columns:1fr 1.1fr;gap:32px;padding:26px}
+.now{display:flex;gap:18px;align-items:center}
+.cover{width:84px;height:84px;border-radius:18px;flex-shrink:0;position:relative;overflow:hidden;background:conic-gradient(from var(--a,200deg),#6b7cff,#b18cff,#3fd0c9,#6b7cff)}
+.cover::after{content:"";position:absolute;inset:0;background:radial-gradient(circle at 30% 25%,rgba(255,255,255,.35),transparent 50%)}
+.ttl{font-size:28px;font-weight:600;letter-spacing:-.035em}
+.meta{display:flex;gap:6px;margin-top:8px;flex-wrap:wrap}
+.chip{font-family:'Geist Mono';font-size:11px;padding:3px 8px;border-radius:7px;background:rgba(255,255,255,.05);border:1px solid var(--line);color:var(--muted)}
+.wave{display:flex;align-items:center;gap:2px;height:72px;margin:30px 0 14px;cursor:pointer}
+.wave i{flex:1;border-radius:2px;background:rgba(255,255,255,.14);transition:background .15s}
+.wave i.p{background:var(--acc)}
+.ctl{display:flex;align-items:center;gap:8px}
+.time{font-family:'Geist Mono';font-size:11.5px;color:var(--muted);margin-left:6px}
+.btn{all:unset;cursor:pointer;width:38px;height:38px;border-radius:50%;display:grid;place-items:center;color:var(--muted);transition:.2s}
+.btn:hover{color:var(--text);background:rgba(255,255,255,.06)}
+.btn.play{width:50px;height:50px;background:#f3f4f6;color:#08090b}
+.btn.play:hover{background:#fff;transform:scale(1.04)}
+.btn svg{width:17px;height:17px}
+.count{margin-left:auto;font-family:'Geist Mono';font-size:11px;color:var(--faint)}
+.list{max-height:300px;overflow:auto;margin-right:-8px;padding-right:8px;scrollbar-width:thin;scrollbar-color:rgba(255,255,255,.1) transparent}
+.row{display:grid;grid-template-columns:30px 1fr 52px 62px;align-items:center;padding:10px 8px;border-radius:10px;font-size:13.5px;cursor:pointer;transition:background .15s}
+.row:hover{background:rgba(255,255,255,.04)}
+.row .n{font-family:'Geist Mono';font-size:11px;color:var(--faint)}
+.row .ft{color:var(--faint)}
+.row .m{font-family:'Geist Mono';font-size:11px;color:var(--muted);text-align:right}
+.row.on{background:rgba(168,180,255,.08)}
+.row.on .n,.row.on .t{color:var(--acc)}
+.eq{display:inline-flex;gap:2px;align-items:flex-end;height:11px}
+.eq b{width:2px;background:var(--acc);animation:eq .9s ease-in-out infinite}
+.eq b:nth-child(2){animation-delay:-.3s}.eq b:nth-child(3){animation-delay:-.6s}
+@keyframes eq{0%,100%{height:3px}50%{height:11px}}
 
-/* ── Links list ── */
-.links-list {
-  background: linear-gradient(145deg, rgba(255,255,255,0.04) 0%, rgba(255,255,255,0.01) 100%);
-  border: 1px solid rgba(255,255,255,0.08);
-  border-top: 1px solid rgba(255,255,255,0.14);
-  border-radius: 16px;
-  padding: 0 14px;
-  margin-bottom: 1rem;
-  box-shadow: 0 4px 16px rgba(0,0,0,0.25);
-}
-.ll-item {
-  display: flex;
-  align-items: center;
-  gap: 9px;
-  padding: 9px 0;
-  border-bottom: 1px solid rgba(255,255,255,0.07);
-  text-decoration: none;
-  color: rgba(255,255,255,0.78);
-  font-family: 'Outfit', sans-serif;
-  font-size: 0.62rem;
-  font-weight: 500;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  transition: color 0.2s;
-}
-.ll-item:last-child { border-bottom: none; }
-.ll-item svg { width: 11px; height: 11px; opacity: 0.7; flex-shrink: 0; transition: opacity 0.2s; }
-.ll-item:hover { color: rgba(255,255,255,0.97); }
-.ll-item:hover svg { opacity: 1; }
-.ll-item:hover .ll-arr { opacity: 0.55; }
-.ll-name { flex: 1; }
-.ll-arr {
-  opacity: 0.22;
-  font-size: 0.75rem;
-  line-height: 1;
-  transition: opacity 0.2s;
-}
-.ll-platform {
-  font-size: 0.48rem;
-  font-weight: 400;
-  letter-spacing: 0.05em;
-  text-transform: lowercase;
-  color: rgba(255,255,255,0.25);
-}
+/* kits */
+.kits{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.kit{display:flex;align-items:center;gap:14px;padding:12px}
+.kit .art{width:72px;height:72px;border-radius:12px;object-fit:cover;border:1px solid var(--line);flex-shrink:0}
+.kit .body{min-width:0;flex:1}
+.kit h3{font-size:15px;font-weight:600;letter-spacing:-.02em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.kit .tl{font-size:12.5px;color:var(--muted);margin-top:3px}
+.kit .total{font-family:'Geist Mono';font-size:11px;color:var(--faint);margin-top:6px}
+.kit .price{align-self:flex-start;font-family:'Geist Mono';font-size:12px;color:var(--muted);display:flex;gap:4px;transition:color .2s}
+.kit .ar{transition:transform .2s}
+.kit:hover .price{color:var(--text)}
+.kit:hover .ar{transform:translate(2px,-2px)}
 
-/* ── Products glass card — D style ── */
-.prod-glass {
-  background: linear-gradient(145deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.015) 100%);
-  border: 1px solid rgba(255,255,255,0.07);
-  border-top: 1px solid rgba(255,255,255,0.15);
-  border-radius: 16px;
-  padding: 0.9rem 1rem;
-  box-shadow: 0 8px 24px rgba(0,0,0,0.35);
-}
+.sounds{text-align:center;margin:0 0 20px}
+.sounds>*{opacity:.4}
+.sounds b{display:block;font-size:84px;font-weight:800;letter-spacing:-.06em;line-height:1;background:linear-gradient(180deg,#fff,#8d909a);-webkit-background-clip:text;background-clip:text;color:transparent}
+.sounds span{font-size:14px;color:var(--muted);letter-spacing:.02em}
+/* purple pulse on kits */
+.kit.glow{animation:kglow 3s ease-in-out}
+@keyframes kglow{
+  0%{border-color:var(--line);box-shadow:inset 0 1px 0 rgba(255,255,255,.05),0 0 0 rgba(167,139,250,0)}
+  40%{border-color:rgba(167,139,250,.4);box-shadow:inset 0 0 30px rgba(167,139,250,.07),0 0 28px rgba(167,139,250,.12)}
+  100%{border-color:var(--line);box-shadow:inset 0 1px 0 rgba(255,255,255,.05),0 0 0 rgba(167,139,250,0)}}
+@keyframes kglowm{0%,100%{background:transparent}40%{background:rgba(167,139,250,.08)}}
+.mobile .lk.glow{animation:kglowm 3s ease-in-out}
+/* connect */
+.connect{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
 
-.prod-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  cursor: pointer;
-  user-select: none;
-  -webkit-user-select: none;
-  padding: 0.3rem 0.5rem;
-  margin: -0.3rem -0.5rem;
-  border-radius: 10px;
-  transition: background 0.2s;
-}
-.prod-header:hover { background: rgba(255,255,255,0.05); }
-.prod-header:active { background: rgba(255,255,255,0.08); }
+footer{border-top:1px solid var(--line);margin-top:32px}
+footer .container{display:flex;justify-content:space-between;align-items:center;height:80px;font-size:12px;color:var(--faint);font-family:'Geist Mono'}
 
-.prod-label {
-  font-size: 0.5rem;
-  font-weight: 600;
-  letter-spacing: 0.3em;
-  text-transform: uppercase;
-  color: var(--text-muted);
-  opacity: 0.7;
-  transition: opacity 0.2s;
-}
-.prod-header:hover .prod-label { opacity: 1; }
+/* reveal */
+.rv{opacity:0;transform:translateY(16px);transition:opacity .8s cubic-bezier(.2,.7,.2,1),transform .8s cubic-bezier(.2,.7,.2,1)}
+.rv.in{opacity:1;transform:none}
 
-.prod-toggle {
-  opacity: 0.55;
-  color: rgba(255,255,255,0.6);
-  flex-shrink: 0;
-  transition: transform 0.32s ease, opacity 0.2s;
-  background: rgba(255,255,255,0.07);
-  border: 1px solid rgba(255,255,255,0.1);
-  border-radius: 50%;
-  padding: 3px;
-  width: 20px;
-  height: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+/* ═════════ MOBILE: one screen, no scroll ═════════ */
+@media (max-width:860px){
+  .desktop{display:none}
+  .mobile{display:flex;flex-direction:column;justify-content:center;gap:8px;min-height:100dvh;
+    padding:max(14px,env(safe-area-inset-top)) 14px max(14px,env(safe-area-inset-bottom))}
+  .mobile .tile{padding:14px;border-radius:18px}
+  .mobile .lab{margin-bottom:10px;font-size:10px}
+  .m-id{display:flex;align-items:center;gap:14px}
+  .m-id .icon{width:64px;height:64px;border-radius:18px}
+  .m-id .icon svg{width:36px;height:36px}
+  .m-id .name{font-size:22px;font-weight:700;letter-spacing:-.04em}
+  .m-id .bio{font-size:12px;color:var(--muted);line-height:1.5;margin-top:4px}
+  .m-grid{display:grid;gap:6px}
+  .m-grid.c4{grid-template-columns:repeat(4,minmax(0,1fr))}
+  .m-grid.c3{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .m-btn{display:flex;flex-direction:column;align-items:center;gap:6px;padding:10px 4px;font-size:11.5px;background:rgba(255,255,255,.03);border:1px solid var(--line);border-radius:12px}
+  .m-btn .ic{width:32px;height:32px}
+  .mobile .lk{padding:7px 8px;margin:0 -8px;font-size:13px}
+  .mobile .cov{width:34px;height:34px;border-radius:8px}
+  .m-foot{display:flex;justify-content:space-between;font:10.5px 'Geist Mono';color:var(--faint);margin-top:4px}
 }
-.prod-header:hover .prod-toggle { opacity: 0.9; background: rgba(255,255,255,0.11); }
-.prod-glass.open .prod-toggle { transform: rotate(180deg); }
-
-.prod-list {
-  display: flex;
-  flex-direction: column;
-  gap: 0.3rem;
-  max-height: 0;
-  overflow: hidden;
-  opacity: 0;
-  transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1),
-              margin-top 0.5s cubic-bezier(0.4, 0, 0.2, 1),
-              opacity 0.35s ease 0.08s;
-  margin-top: 0;
-}
-.prod-glass.open .prod-list {
-  max-height: 420px;
-  margin-top: 0.55rem;
-  opacity: 1;
-}
-
-.prod-item {
-  background: rgba(255,255,255,0.03);
-  border: 1px solid rgba(255,255,255,0.07);
-  border-top: 1px solid rgba(255,255,255,0.12);
-  border-radius: 10px;
-  padding: 0.65rem 0.9rem;
-  display: flex;
-  align-items: center;
-  gap: 0.7rem;
-  text-decoration: none;
-  cursor: pointer;
-  transition: background 0.25s, border-color 0.25s, transform 0.2s;
-}
-.prod-item:hover {
-  background: rgba(255,255,255,0.06);
-  border-color: rgba(255,255,255,0.16);
-  transform: translateY(-1px);
-}
-.prod-icon { font-size: 1rem; flex-shrink: 0; width: 1.5rem; text-align: center; }
-.prod-info { flex: 1; min-width: 0; }
-.prod-name {
-  font-size: 0.68rem;
-  font-weight: 600;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--text-main);
-}
-.prod-desc {
-  font-size: 0.58rem;
-  font-weight: 300;
-  color: var(--text-muted);
-  margin-top: 0.15rem;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-}
-.prod-tag {
-  font-size: 0.42rem;
-  font-weight: 600;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  padding: 0.18rem 0.5rem;
-  border-radius: 50px;
-  border: 1px solid rgba(255,255,255,0.13);
-  color: rgba(255,255,255,0.5);
-  flex-shrink: 0;
-}
-.prod-arrow {
-  flex-shrink: 0;
-  opacity: 0;
-  color: var(--text-main);
-  transform: translateX(-4px);
-  transition: opacity 0.2s, transform 0.2s;
-}
-.prod-item:hover .prod-arrow { opacity: 0.6; transform: translateX(0); }
-
-/* ── Main layout ── */
-#main-layout {
-  position: fixed;
-  inset: 0;
-  z-index: 10;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  pointer-events: none;
-  perspective: 900px;
-  gap: 0.7rem;
-}
-#main-layout > * { pointer-events: auto; }
-
-/* ── Mobile ── */
-@media (max-width: 480px) {
-  body { overflow-y: auto; overflow-x: hidden; }
-  #main-layout {
-    position: relative;
-    min-height: 100dvh;
-    padding: 1.5rem 1rem;
-    justify-content: center;
-    gap: 0.55rem;
-  }
-  #card { width: 100%; padding: 0; }
-  #player { width: calc(100% - 5rem); margin: 0 auto; }
-  .prod-glass { padding: 0.6rem 0.85rem; }
-  .prod-item { padding: 0.42rem 0.7rem; gap: 0.55rem; }
-  .prod-desc { display: none; }
-  .prod-list { gap: 0.2rem; }
-}
-@media (max-height: 760px) {
-  #card { padding: 0 0.4rem; }
-  .card-name { font-size: clamp(3rem, 9vw, 4.5rem); }
-  .card-sub { margin-bottom: 1rem; }
-  .lnk { padding: 0.55rem 0.5rem; font-size: 0.57rem; }
-  .prod-item { padding: 0.55rem 0.8rem; }
-}
-
-/* ── Touch ── */
-@media (hover: none) and (pointer: coarse) {
-  #bg-video { filter: blur(8px); transform: none; will-change: auto; }
-  .prod-item::before { display: none; }
-  .lnk, .prod-item, .p-btn {
-    transform: none !important;
-    transition: background 0.2s, border-color 0.2s, color 0.2s !important;
-    will-change: auto !important;
-  }
-  .prod-item:hover, .prod-item:active,
-  .p-btn:hover, .p-btn:active { transform: none !important; }
-  .ll-item:hover { color: rgba(255,255,255,0.6); }
-  .ll-item:hover svg { opacity: 0.55; }
-  .ll-item:hover .ll-arr { opacity: 0.2; }
-  .prod-desc { white-space: normal; overflow: visible; text-overflow: clip; font-size: 0.55rem; line-height: 1.4; }
-  .prod-arrow { display: none; }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
-  #bg-video { display: none; }
-}
-
-/* ════════════════════ PLAYER ════════════════════ */
-
-#player-label {
-  text-align: center;
-  font-size: 0.72rem;
-  font-weight: 500;
-  color: rgba(255,255,255,0.45);
-  letter-spacing: 0.06em;
-  pointer-events: none;
-  user-select: none;
-}
-
-#player {
-  position: relative;
-  z-index: 30;
-  width: min(30rem, calc(100vw - 2rem));
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
-  gap: 0;
-  pointer-events: auto;
-}
-
-#playlist-panel {
-  position: absolute;
-  bottom: 100%;
-  left: 0; right: 0;
-  backdrop-filter: blur(24px) saturate(120%);
-  -webkit-backdrop-filter: blur(24px) saturate(120%);
-  background: linear-gradient(180deg, rgba(255,255,255,0.04) 0%, rgba(255,255,255,0.01) 100%);
-  border: 0px solid transparent;
-  border-bottom: none;
-  border-radius: 20px 20px 0 0;
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.42s cubic-bezier(0.25,0.8,0.25,1), border-width 0s 0.42s;
-}
-#playlist-panel.open {
-  max-height: 185px;
-  border-width: 1px;
-  border-color: rgba(255,255,255,0.1);
-  border-top-color: rgba(255,255,255,0.2);
-  transition: max-height 0.42s cubic-bezier(0.25,0.8,0.25,1), border-width 0s 0s;
-}
-
-#playlist-inner {
-  padding: 0.8rem 0.6rem 0.5rem;
-  display: flex; flex-direction: column; gap: 2px;
-  overflow-y: auto; max-height: 180px;
-  scrollbar-width: thin; scrollbar-color: rgba(255,255,255,0.1) transparent;
-}
-#playlist-inner::-webkit-scrollbar { width: 3px; }
-#playlist-inner::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.12); border-radius: 2px; }
-
-.pl-track {
-  display: flex; align-items: center; gap: 0.7rem;
-  padding: 0.48rem 0.7rem; border-radius: 10px;
-  cursor: pointer; transition: background 0.2s;
-  border: 1px solid transparent;
-}
-.pl-track:hover { background: rgba(255,255,255,0.06); }
-.pl-track.active { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.12); }
-.pl-num { font-size: 0.55rem; font-weight: 400; color: rgba(255,255,255,0.25); width: 1.4rem; text-align: right; flex-shrink: 0; font-family: 'Outfit', monospace; }
-.pl-track.active .pl-num { color: var(--text-main); }
-.pl-mini-wave { display: none; }
-.pl-title { font-size: 0.64rem; font-weight: 400; color: rgba(255,255,255,0.7); flex: 1; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.pl-track.active .pl-title { color: var(--text-main); font-weight: 500; }
-.pl-dur { font-size: 0.52rem; color: rgba(255,255,255,0.25); flex-shrink: 0; font-family: 'Outfit', monospace; }
-
-#player-bar {
-  backdrop-filter: blur(28px) saturate(130%);
-  -webkit-backdrop-filter: blur(28px) saturate(130%);
-  background: linear-gradient(145deg, rgba(255,255,255,0.07) 0%, rgba(255,255,255,0.02) 100%);
-  border: 1px solid rgba(255,255,255,0.1);
-  border-radius: 20px;
-  box-shadow: 0 16px 48px rgba(0,0,0,0.55), inset 0 0 24px rgba(255,255,255,0.02);
-  padding: 0.9rem 1.2rem;
-  display: flex; align-items: center; gap: 1rem;
-  position: relative; overflow: hidden;
-  transition: border-radius 0.32s cubic-bezier(0.25,0.8,0.25,1) 0.28s,
-              border-top-color 0.25s ease 0.28s, box-shadow 0.4s;
-}
-#player-bar.connected {
-  border-top-left-radius: 0; border-top-right-radius: 0;
-  border-top-color: transparent;
-  transition: border-radius 0.28s cubic-bezier(0.25,0.8,0.25,1) 0s,
-              border-top-color 0.15s ease 0s, box-shadow 0.4s;
-}
-#player-bar::before {
-  content: '';
-  position: absolute; top: 0; left: 0;
-  width: 60%; height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.025), transparent);
-  transform: skewX(-15deg) translateX(-200%);
-  transition: transform 0s; pointer-events: none; will-change: transform;
-}
-#player-bar:hover::before { transform: skewX(-15deg) translateX(450%); transition: transform 2.2s ease-in-out; }
-
-#player-wave { display: none; }
-
-#player-info { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 0.38rem; }
-#player-title { font-size: 0.72rem; font-weight: 500; color: var(--text-main); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-#player-sub { font-size: 0.52rem; font-weight: 300; color: rgba(255,255,255,0.38); letter-spacing: 0.05em; }
-
-#player-progress {
-  position: relative; height: 3px;
-  background: rgba(255,255,255,0.1); border-radius: 3px; cursor: pointer;
-}
-#player-progress-fill {
-  height: 100%; background: var(--clr-progress);
-  border-radius: 3px; width: 0%; pointer-events: none;
-  transition: background 0.4s;
-}
-#player-seek {
-  position: absolute; inset: -6px 0;
-  opacity: 0; width: 100%; cursor: pointer; margin: 0; -webkit-appearance: none;
-}
-
-#player-controls { display: flex; align-items: center; gap: 0.3rem; flex-shrink: 0; }
-.p-btn {
-  width: 2.1rem; height: 2.1rem;
-  border: none; background: rgba(255,255,255,0.05);
-  border-radius: 50%; cursor: pointer;
-  display: flex; align-items: center; justify-content: center;
-  color: rgba(255,255,255,0.65);
-  transition: background 0.2s, color 0.2s, transform 0.15s;
-  flex-shrink: 0;
-}
-.p-btn:hover { background: rgba(255,255,255,0.12); color: #fff; transform: scale(1.08); }
-.p-btn:active { transform: scale(0.94); }
-.p-btn svg { width: 13px; height: 13px; }
-#btn-play { width: 2.5rem; height: 2.5rem; background: var(--clr-play-bg); color: #fff; transition: background 0.25s, transform 0.15s; }
-#btn-play:hover { background: var(--clr-play-hover); }
-#btn-play svg { width: 15px; height: 15px; }
-.p-btn.active { color: rgba(255,255,255,0.9); }
-
-#volume-wrap {
-  display: flex; align-items: center; gap: 0.42rem;
-  flex-shrink: 0; padding-left: 0.65rem;
-  border-left: 1px solid rgba(255,255,255,0.08);
-}
-#vol-icon { width: 14px; height: 14px; color: rgba(255,255,255,0.4); flex-shrink: 0; cursor: pointer; transition: color 0.2s; }
-#vol-icon:hover { color: rgba(255,255,255,0.75); }
-#volume-slider {
-  -webkit-appearance: none; appearance: none;
-  width: 58px; height: 3px;
-  background: rgba(255,255,255,0.13); border-radius: 3px; outline: none; cursor: pointer;
-}
-#volume-slider::-webkit-slider-thumb {
-  -webkit-appearance: none; width: 11px; height: 11px;
-  border-radius: 50%; background: rgba(255,255,255,0.72);
-  cursor: pointer; transition: background 0.2s, transform 0.15s;
-}
-#volume-slider::-webkit-slider-thumb:hover { background: #fff; transform: scale(1.25); }
-#volume-slider::-moz-range-thumb {
-  width: 11px; height: 11px; border-radius: 50%;
-  background: rgba(255,255,255,0.72); border: none; cursor: pointer;
-}
-
-@media (max-width: 480px) {
-  #player-bar { padding: 0.75rem 0.9rem; gap: 0.7rem; }
-  #player-wave { display: none; }
-  #player-sub { display: none; }
-  #volume-wrap { display: none; }
-  #playlist-panel.open { max-height: 185px; }
-  #playlist-inner { max-height: 180px; }
-}
-
 </style>
 </head>
 <body>
+<svg width="0" height="0" style="position:absolute"><defs>
+  <linearGradient id="metal" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff"/><stop offset=".45" stop-color="#c9cbd1"/><stop offset="1" stop-color="#7a7d85"/></linearGradient>
+  <path id="hp" d="M0 26C-6 20-30 6-30-10C-30-22-20-28-12-28C-6-28-2-24 0-18C2-24 6-28 12-28C20-28 30-22 30-10C30 6 6 20 0 26Z"/>
+  <clipPath id="cl"><polygon points="-40,-40 0,-40 0,-18 -4,-9 3,-1 -3,7 2,15 0,30 -40,40"/></clipPath>
+  <clipPath id="cr"><polygon points="40,-40 0,-40 0,-18 -4,-9 3,-1 -3,7 2,15 0,30 40,40"/></clipPath>
+  <!-- icons -->
+  <symbol id="i-ig" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/></g><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></symbol>
+  <symbol id="i-yt" viewBox="0 0 24 24"><path fill="currentColor" d="M21.6 7.2a2.5 2.5 0 0 0-1.8-1.8C18.2 5 12 5 12 5s-6.2 0-7.8.4a2.5 2.5 0 0 0-1.8 1.8C2 8.8 2 12 2 12s0 3.2.4 4.8a2.5 2.5 0 0 0 1.8 1.8C5.8 19 12 19 12 19s6.2 0 7.8-.4a2.5 2.5 0 0 0 1.8-1.8c.4-1.6.4-4.8.4-4.8s0-3.2-.4-4.8zM10 15V9l5.2 3z"/></symbol>
+  <symbol id="i-bs" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" d="M12 3l2.6 5.6L20 9.5l-4 4 1 5.8-5-2.8-5 2.8 1-5.8-4-4 5.4-.9z"/></symbol>
+  <symbol id="i-gn" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" d="M4 6h16M4 12h10M4 18h13"/></symbol>
+  <symbol id="i-dc" viewBox="0 0 24 24"><path fill="currentColor" d="M19.5 5.3A17 17 0 0 0 15.3 4l-.5 1a15.6 15.6 0 0 0-5.6 0l-.5-1a17 17 0 0 0-4.2 1.3C1.9 9.3 1.2 13.2 1.5 17a17 17 0 0 0 5.2 2.6l1.1-1.8c-.6-.2-1.2-.5-1.7-.9l.4-.3a12.2 12.2 0 0 0 11 0l.4.3c-.5.4-1.1.7-1.7.9l1.1 1.8a17 17 0 0 0 5.2-2.6c.4-4.4-.7-8.3-3-11.7zM8.5 14.7c-1 0-1.9-1-1.9-2.1s.8-2.1 1.9-2.1 1.9 1 1.9 2.1-.8 2.1-1.9 2.1zm7 0c-1 0-1.9-1-1.9-2.1s.8-2.1 1.9-2.1 1.9 1 1.9 2.1-.8 2.1-1.9 2.1z"/></symbol>
+  <symbol id="i-tg" viewBox="0 0 24 24"><path fill="currentColor" d="M21.5 4.3 2.9 11.5c-1.3.5-1.3 1.2-.2 1.6l4.8 1.5 1.8 5.6c.2.6.4.8.9.8.4 0 .6-.2.9-.4l2.3-2.2 4.7 3.5c.9.5 1.5.2 1.7-.8l3.1-14.6c.3-1.3-.5-1.9-1.4-1.5zM8.9 14.2l9.4-5.9c.4-.3.8-.1.5.2l-8 7.3-.3 3.3z"/></symbol>
+</defs></svg>
 
-<video id="bg-video" autoplay muted loop playsinline preload="auto" src="bg-mobile.mp4"></video>
-<div id="bg-overlay"></div>
+<!-- ═════════════ DESKTOP ═════════════ -->
+<div class="desktop">
+<nav><div class="container">
+  <a class="brand" href="#top"><span class="icon"><svg class="hrt" viewBox="-36 -36 72 72"><g class="half hl"><use href="#hp" clip-path="url(#cl)"/></g><g class="half hr"><use href="#hp" clip-path="url(#cr)"/></g></svg></span>NIKA00</a>
+  <div class="menu"><a href="#connect">Links</a><a href="#kits">Kits</a><a href="#beats">Beats</a></div>
+  <div class="right">
+    <a class="btn-s" href="https://discord.com/invite/5RcbaVr8qg" target="_blank" rel="noopener"><svg><use href="#i-dc"/></svg>Discord</a>
+    <a class="btn-s" href="https://payhip.com/hatemusic" target="_blank" rel="noopener">Shop ↗</a>
+  </div>
+</div></nav>
 
-
-<div id="main-layout">
-  <!-- D design: #card is just a layout container, no glass wrapper -->
-  <div id="card">
-    <div class="card-name">NIKA00</div>
-    <p class="card-sub">Good music enjoyer from Ukraine, Kyiv.<br>Making beats, loops &amp; soundkits.</p>
-
-    <div class="links-list">
-      <a href="https://www.instagram.com/prodnika00" target="_blank" rel="noopener" class="ll-item">
-        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
-        <span class="ll-name">Instagram</span>
-        <span class="ll-arr">›</span>
-      </a>
-      <a href="https://www.beatstars.com/prodnika00" target="_blank" rel="noopener" class="ll-item">
-        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 3v10.55A4 4 0 1 0 14 17V7h4V3h-6z"/></svg>
-        <span class="ll-name">BeatStars</span>
-        <span class="ll-arr">›</span>
-      </a>
-      <a href="https://discord.com/invite/5RcbaVr8qg" target="_blank" rel="noopener" class="ll-item">
-        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057c.001.022.015.043.035.054a19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg>
-        <span class="ll-name">my server</span>
-        <span class="ll-arr">›</span>
-      </a>
-      <a href="https://payhip.com/hatemusic" target="_blank" rel="noopener" class="ll-item">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4zM3 6h18M16 10a4 4 0 0 1-8 0"/></svg>
-        <span class="ll-name">My Kits</span>
-        <span class="ll-arr">›</span>
-      </a>
-      <a href="https://www.youtube.com/@prodnika00" target="_blank" rel="noopener" class="ll-item">
-        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
-        <span class="ll-name">YouTube</span>
-        <span class="ll-arr">›</span>
-      </a>
-      <a href="https://genius.com/artists/Nika00" target="_blank" rel="noopener" class="ll-item">
-        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 1a4 4 0 0 1 4 4v6a4 4 0 0 1-8 0V5a4 4 0 0 1 4-4zm-1 18.93V22h2v-2.07A8 8 0 0 0 20 12h-2a6 6 0 0 1-12 0H4a8 8 0 0 0 7 7.93z"/></svg>
-        <span class="ll-name">Genius</span>
-        <span class="ll-arr">›</span>
-      </a>
-      <a href="https://t.me/prodnika00" target="_blank" rel="noopener" class="ll-item">
-        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.248-2.04 9.61c-.148.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12L7.19 13.845l-2.95-.924c-.64-.203-.654-.64.136-.948l11.527-4.445c.537-.193 1.006.131.659.72z"/></svg>
-        <span class="ll-name">Beats</span>
-        <span class="ll-platform">(telegram)</span>
-        <span class="ll-arr">›</span>
-      </a>
-      <a href="https://t.me/loopsbynika00" target="_blank" rel="noopener" class="ll-item">
-        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.248-2.04 9.61c-.148.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12L7.19 13.845l-2.95-.924c-.64-.203-.654-.64.136-.948l11.527-4.445c.537-.193 1.006.131.659.72z"/></svg>
-        <span class="ll-name">Loops</span>
-        <span class="ll-platform">(telegram)</span>
-        <span class="ll-arr">›</span>
-      </a>
-    </div>
-
-    <!-- Products wrapped in their own glass card -->
-    <div class="prod-glass" id="prod-glass">
-      <div class="prod-header" onclick="this.closest('.prod-glass').classList.toggle('open')">
-        <div class="prod-label">Products</div>
-        <svg class="prod-toggle" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
-      </div>
-      <div class="prod-list">
-        <a href="https://payhip.com/b/zPibF" target="_blank" rel="noopener" class="prod-item">
-          <div class="prod-icon">⚡</div>
-          <div class="prod-info">
-            <div class="prod-name">GPT-D3MON Drum Kit</div>
-            <div class="prod-desc">╰(◣﹏◢)╯ THE BEST FOR DARKO BEATS</div>
-          </div>
-          <span class="prod-tag">Shop</span>
-          <svg class="prod-arrow" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
-        </a>
-        <a href="https://payhip.com/b/oZyCt" target="_blank" rel="noopener" class="prod-item">
-          <div class="prod-icon">🥁</div>
-          <div class="prod-info">
-            <div class="prod-name">2026 Drum Stash</div>
-            <div class="prod-desc">Includes sounds I used the most this year</div>
-          </div>
-          <span class="prod-tag">Shop</span>
-          <svg class="prod-arrow" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
-        </a>
-        <a href="https://payhip.com/b/51rhU" target="_blank" rel="noopener" class="prod-item">
-          <div class="prod-icon">🎹</div>
-          <div class="prod-info">
-            <div class="prod-name">Electra Bank + MIDI</div>
-            <div class="prod-desc">The Best Bank for Darko melodies</div>
-          </div>
-          <span class="prod-tag">Shop</span>
-          <svg class="prod-arrow" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
-        </a>
+<main class="container" id="top">
+  <div class="hero">
+    <div class="rv">
+      <h1>NIKA00</h1>
+      <p>Also known as <b>Matvii</b> from Kyiv, Ukraine.<br>Make loops, beats &amp; soundkits.</p>
+      <div class="cta">
+        <a class="btn-p" href="#kits">My kits →</a>
+        <a class="btn-g" href="#beats"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4v16l13-8z"/></svg>Listen to beats</a>
       </div>
     </div>
+    <div class="hero-art rv"><div class="icon"><svg class="hrt" viewBox="-36 -36 72 72"><g class="half hl"><use href="#hp" clip-path="url(#cl)"/></g><g class="half hr"><use href="#hp" clip-path="url(#cr)"/></g></svg></div></div>
   </div>
 
-  <div id="player-label">You can listen some of my beats right here:</div>
-
-  <div id="player">
-    <div id="playlist-panel">
-      <div id="playlist-inner"></div>
-    </div>
-    <div id="player-bar">
-      <div id="player-wave">
-        <span></span><span></span><span></span>
-        <span></span><span></span><span></span>
+  <section class="sec" id="connect">
+    <div class="sec-h rv"><div><h2>Find me</h2><p>New beats, loops and drops land here first.</p></div></div>
+    <div class="connect">
+      <div class="tile rv">
+        <div class="lab"><span>Socials</span></div>
+        <a class="lk" href="https://www.instagram.com/prodnika00" target="_blank" rel="noopener"><span class="ic"><svg><use href="#i-ig"/></svg></span>Instagram<span class="h">@prodnika00</span><span class="ar">↗</span></a>
+        <a class="lk" href="https://www.youtube.com/@prodnika00" target="_blank" rel="noopener"><span class="ic"><svg><use href="#i-yt"/></svg></span>YouTube<span class="h">@prodnika00</span><span class="ar">↗</span></a>
+        <a class="lk" href="https://www.beatstars.com/prodnika00" target="_blank" rel="noopener"><span class="ic"><svg><use href="#i-bs"/></svg></span>BeatStars<span class="h">prodnika00</span><span class="ar">↗</span></a>
+        <a class="lk" href="https://genius.com/artists/Nika00" target="_blank" rel="noopener"><span class="ic"><svg><use href="#i-gn"/></svg></span>Genius<span class="h">Nika00</span><span class="ar">↗</span></a>
       </div>
-      <div id="player-info">
-        <div id="player-title">—</div>
-        <div id="player-sub">NIKA00</div>
-        <div id="player-progress">
-          <div id="player-progress-fill"></div>
-          <input type="range" id="player-seek" min="0" max="100" value="0" step="0.1">
+      <div class="tile rv">
+        <div class="lab"><span>Community</span></div>
+        <a class="lk" href="https://discord.com/invite/5RcbaVr8qg" target="_blank" rel="noopener"><span class="ic"><svg><use href="#i-dc"/></svg></span>Discord server<span class="h">join</span><span class="ar">↗</span></a>
+        <a class="lk" href="https://t.me/prodnika00" target="_blank" rel="noopener"><span class="ic"><svg><use href="#i-tg"/></svg></span>Beats<span class="h">telegram</span><span class="ar">↗</span></a>
+        <a class="lk" href="https://t.me/loopsbynika00" target="_blank" rel="noopener"><span class="ic"><svg><use href="#i-tg"/></svg></span>Loops<span class="h">telegram</span><span class="ar">↗</span></a>
+        <a class="lk" href="https://payhip.com/hatemusic" target="_blank" rel="noopener"><span class="ic">$</span>Payhip store<span class="h">hatemusic</span><span class="ar">↗</span></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="kits">
+    <div class="sec-h rv"><div><h2>Kits</h2><p>Sounds I use in my own beats.</p></div><a class="btn-s" href="https://payhip.com/hatemusic" target="_blank" rel="noopener">All products ↗</a></div>
+    <div class="sounds rv"><b>1,175+</b><span>sounds in kits</span></div>
+    <div class="kits">
+      <a class="tile kit rv" href="https://payhip.com/b/WVQ5X" target="_blank" rel="noopener">
+        <img class="art" src="assets/kits/plantation.jpg" alt="The Plantation Drumkit cover">
+        <div class="body"><h3>The Plantation Drumkit</h3><div class="tl">Ultimate Darko Drumkit</div><div class="total">200 sounds</div></div>
+        <span class="price"><span class="ar">↗</span></span>
+      </a>
+      <a class="tile kit rv" href="https://payhip.com/b/51rhU" target="_blank" rel="noopener">
+        <img class="art" src="assets/kits/electra.jpg" alt="Electra Bank + MIDI cover">
+        <div class="body"><h3>Electra Bank + MIDI</h3><div class="tl">Ultimate Darko Soundbank</div><div class="total">270 presets · 120 MIDI</div></div>
+        <span class="price"><span class="ar">↗</span></span>
+      </a>
+      <a class="tile kit rv" href="https://payhip.com/b/ZtjUf" target="_blank" rel="noopener">
+        <img class="art" src="assets/kits/cricket.jpg" alt="Cricket Stash cover">
+        <div class="body"><h3>Cricket Stash</h3><div class="tl">Updated 2026 Pack</div><div class="total">975 sounds · 295 MB</div></div>
+        <span class="price"><span class="ar">↗</span></span>
+      </a>
+    </div>
+  </section>
+
+  <section class="sec" id="beats">
+    <div class="sec-h rv"><div><h2>Beats</h2><p>Some of what I've been cooking lately.</p></div><span class="k" id="count2"></span></div>
+    <div class="tile pl rv">
+      <div>
+        <div class="lab"><span>Now playing</span></div>
+        <div class="now"><div class="cover" id="cover"></div><div><div class="ttl" id="ttl"></div><div class="meta" id="meta"></div></div></div>
+        <div class="wave" id="wave"></div>
+        <div class="ctl">
+          <button class="btn" id="prev" aria-label="Previous"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M6 5h2v14H6zM20 5v14L9 12z"/></svg></button>
+          <button class="btn play" id="play" aria-label="Play"><svg viewBox="0 0 24 24" fill="currentColor" id="pi"><path d="M7 4v16l13-8z"/></svg></button>
+          <button class="btn" id="next" aria-label="Next"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 5h2v14h-2zM4 5v14l11-7z"/></svg></button>
+          <span class="time" id="time">0:00 / 0:00</span>
+          <span class="count" id="count"></span>
         </div>
       </div>
-      <div id="player-controls">
-        <button class="p-btn" id="btn-prev">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M6 6h2v12H6zm3.5 6 8.5 6V6z"/></svg>
-        </button>
-        <button class="p-btn" id="btn-play">
-          <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="5,3 19,12 5,21"/></svg>
-        </button>
-        <button class="p-btn" id="btn-next">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M6 18l8.5-6L6 6v12zM16 6h2v12h-2z"/></svg>
-        </button>
-        <button class="p-btn" id="btn-list">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 13h2v-2H3v2zm0 4h2v-2H3v2zm0-8h2V7H3v2zm4 4h14v-2H7v2zm0 4h14v-2H7v2zM7 7v2h14V7H7z"/></svg>
-        </button>
-      </div>
-      <div id="volume-wrap">
-        <svg id="vol-icon" viewBox="0 0 24 24" fill="currentColor">
-          <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/>
-        </svg>
-        <input type="range" id="volume-slider" min="0" max="100" step="1" value="50">
-      </div>
+      <div class="list" id="list"></div>
+    </div>
+  </section>
+
+
+</main>
+
+<footer><div class="container"><span>© 2026 NIKA00</span><span>Kyiv · Ukraine</span></div></footer>
+</div>
+
+<!-- ═════════════ MOBILE (one screen) ═════════════ -->
+<div class="mobile">
+  <div class="tile m-id">
+    <div class="icon"><svg class="hrt" viewBox="-36 -36 72 72"><g class="half hl"><use href="#hp" clip-path="url(#cl)"/></g><g class="half hr"><use href="#hp" clip-path="url(#cr)"/></g></svg></div>
+    <div><div class="name">NIKA00</div><p class="bio">Also known as Matvii from Kyiv, Ukraine.<br>Make loops, beats &amp; soundkits.</p></div>
+  </div>
+  <div class="tile">
+    <div class="lab"><span>Socials</span></div>
+    <div class="m-grid c4">
+      <a class="m-btn" href="https://www.instagram.com/prodnika00"><span class="ic"><svg><use href="#i-ig"/></svg></span>Instagram</a>
+      <a class="m-btn" href="https://www.youtube.com/@prodnika00"><span class="ic"><svg><use href="#i-yt"/></svg></span>YouTube</a>
+      <a class="m-btn" href="https://www.beatstars.com/prodnika00"><span class="ic"><svg><use href="#i-bs"/></svg></span>BeatStars</a>
+      <a class="m-btn" href="https://genius.com/artists/Nika00"><span class="ic"><svg><use href="#i-gn"/></svg></span>Genius</a>
     </div>
   </div>
+  <div class="tile">
+    <div class="lab"><span>Community</span></div>
+    <div class="m-grid c3">
+      <a class="m-btn" href="https://discord.com/invite/5RcbaVr8qg"><span class="ic"><svg><use href="#i-dc"/></svg></span>Discord</a>
+      <a class="m-btn" href="https://t.me/prodnika00"><span class="ic"><svg><use href="#i-tg"/></svg></span>Beats</a>
+      <a class="m-btn" href="https://t.me/loopsbynika00"><span class="ic"><svg><use href="#i-tg"/></svg></span>Loops</a>
+    </div>
+  </div>
+  <div class="tile">
+    <div class="lab"><span>Kits</span><a href="https://payhip.com/hatemusic" style="text-transform:none;letter-spacing:0">payhip ↗</a></div>
+    <a class="lk" href="https://payhip.com/b/WVQ5X"><img class="cov" src="assets/kits/plantation.jpg" alt=""><span>The Plantation Drumkit<span class="sub">Ultimate Darko Drumkit</span></span><span class="ar" style="margin-left:auto">→</span></a>
+    <a class="lk" href="https://payhip.com/b/51rhU"><img class="cov" src="assets/kits/electra.jpg" alt=""><span>Electra Bank + MIDI<span class="sub">Ultimate Darko Soundbank</span></span><span class="ar" style="margin-left:auto">→</span></a>
+    <a class="lk" href="https://payhip.com/b/ZtjUf"><img class="cov" src="assets/kits/cricket.jpg" alt=""><span>Cricket Stash<span class="sub">Updated 2026 Pack</span></span><span class="ar" style="margin-left:auto">→</span></a>
+  </div>
+  <div class="m-foot"><span>© 2026 NIKA00</span><span>Kyiv · UA</span></div>
 </div>
 
 <script>
-
-// ── Background video: crossfade on desktop, pure HTML autoplay on mobile ─────
-(function() {
-  const isTouch = window.matchMedia("(hover: none) and (pointer: coarse)").matches;
-  if (isTouch) {
-    var v = document.getElementById("bg-video");
-    v.muted = true;
-    v.addEventListener("canplay", function() {
-      if (!v.paused) return;
-      v.play().catch(function() {
-        // Autoplay blocked (e.g. Low Power Mode) — play on first tap
-        var overlay = document.createElement("div");
-        overlay.style.cssText = "position:fixed;inset:0;z-index:9999;cursor:pointer;";
-        document.body.appendChild(overlay);
-        overlay.addEventListener("touchstart", function() {
-          v.play().catch(function(){});
-          overlay.remove();
-        }, { once: true, passive: true });
-      });
-    }, { once: true });
-    return;
-  }
-
-  const v1 = document.getElementById("bg-video");
-
-  // swap to desktop quality
-  v1.src = "bg-desktop.mp4";
-  v1.muted = true;
-
-  // create v2 clone for crossfade
-  const v2 = document.createElement("video");
-  v2.id = "bg-video2";
-  v2.muted = true;
-  v2.loop = true;
-  v2.playsInline = true;
-  v2.setAttribute("playsinline", "");
-  v2.src = "bg-desktop.mp4";
-  v2.style.cssText = "position:fixed;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;pointer-events:none;will-change:transform;transform:translateZ(0) scale(1.05);backface-visibility:hidden;filter:blur(2px);opacity:0;transition:opacity 1.2s ease;";
-  v1.after(v2);
-
-  v1.load();
-  v1.style.transition = "opacity 1.2s ease";
-  let busy = false;
-
-  function crossfade(from, to) {
-    if (busy) return;
-    busy = true;
-    to.currentTime = 0;
-    to.play();
-    to.style.opacity = "1";
-    from.style.opacity = "0";
-    setTimeout(() => {
-      from.pause();
-      from.currentTime = 0;
-      busy = false;
-      watch(to, from);
-    }, 1400);
-  }
-
-  function watch(playing, waiting) {
-    playing.addEventListener("timeupdate", function handler() {
-      if (!playing.duration) return;
-      if (playing.currentTime >= playing.duration - 1.4) {
-        playing.removeEventListener("timeupdate", handler);
-        crossfade(playing, waiting);
-      }
-    });
-  }
-
-  v1.addEventListener("canplay", () => { v1.play().catch(() => {}); watch(v1, v2); }, { once: true });
-})();
-
-// ════════════════════════════════════════
-// PLAYER
-// ════════════════════════════════════════
-
-const FILES = [
-  "bring me back 138 f#min nika00.mp3",
-  "christina 138 emin nika00.mp3",
-  "circonium 135 fmin nika00.mp3",
-  "crow 139 g#min nika00 shvkeit.mp3",
-  "cyberlove 154 d#min nika00.mp3",
-  "cynical 149 emin nika00.mp3",
-  "drunchik 139 fmin nika00.mp3",
-  "escapism 147 fmin nika00.mp3",
-  "fragen 131 bmin nika00 326noisy.mp3",
-  "full moon 133 emin nika00.mp3",
-  "hulio 138 fmin nika00.mp3",
-  "hyper vision 144 f#min nika00.mp3",
-  "i was too late 154 f#min nika00.mp3",
-  "kozel darko 138 c#min nika00.mp3",
-  "madam 156 amin nika00.mp3",
-  "miss you 150 f#min nika00.mp3",
-  "mr. ananas 138 dmin nika00 intekodi.mp3",
-  "mr. tsio 169 f#min nika00.mp3",
-  "mriya 144 dmin nika00 taffy.mp3",
-  "new darko 140 nika00 asama.mp3",
-  "nightride 140 gmin nika00 rogger.mp3",
-  "nika type shit 138 f#min nika00.mp3",
-  "nine 118 g#min nika00.mp3",
-  "password 136 cmin nika00.mp3",
-  "pikuz 138 gmin nika00.mp3",
-  "pump 151 fmin nika00.mp3",
-  "starry 138 f#min nika00.mp3",
-  "swinga 137 fmin nika00.mp3",
-  "talisman 138 f#min nika00.mp3",
-  "try to love me 140 nika00 valhal.mp3",
-  "vines 139 bmin nika00 326noisy.mp3",
-  "vivienne 143 emin nika00.mp3",
-  "vvinzer 155 f#min nika00.mp3",
-  "zranku 138 dmin nika00.mp3",
-];
-const FIXED_ORDER = [17,5,23,11,29,2,14,8,31,19,6,26,0,13,22,7,33,15,3,28,10,21,16,4,30,9,18,27,1,24,12,32,20,25];
-const TRACKS = FIXED_ORDER.map(i => ({
-  title: FILES[i].replace(/\.mp3$/i, ""),
-  file:  "beats/" + encodeURIComponent(FILES[i]),
+// spotlight
+document.querySelectorAll('.tile').forEach(t=>t.addEventListener('pointermove',e=>{
+  const r=t.getBoundingClientRect();t.style.setProperty('--mx',e.clientX-r.left+'px');t.style.setProperty('--my',e.clientY-r.top+'px');
 }));
+// reveal on scroll
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12});
+document.querySelectorAll('.rv').forEach((el,i)=>{el.style.transitionDelay=(i%3)*60+'ms';io.observe(el)});
 
-let currentIndex = 0;
-let isPlaying    = false;
-let shuffleOrder = [];
-
-const audio   = new Audio();
-audio.preload = "metadata";
-
-const playerBar     = document.getElementById("player-bar");
-const playerTitle   = document.getElementById("player-title");
-const playerSub     = document.getElementById("player-sub");
-const progressFill  = document.getElementById("player-progress-fill");
-const seekInput     = document.getElementById("player-seek");
-const btnPlay       = document.getElementById("btn-play");
-const btnPrev       = document.getElementById("btn-prev");
-const btnNext       = document.getElementById("btn-next");
-const btnList       = document.getElementById("btn-list");
-const playlistPanel = document.getElementById("playlist-panel");
-const playlistInner = document.getElementById("playlist-inner");
-
-function buildPlaylist() {
-  playlistInner.innerHTML = "";
-  TRACKS.forEach((t, i) => {
-    const row = document.createElement("div");
-    row.className = "pl-track";
-    row.dataset.index = i;
-    row.innerHTML = `
-      <span class="pl-num">${String(i+1).padStart(2,"0")}</span>
-      <span class="pl-mini-wave"><span></span><span></span><span></span><span></span></span>
-      <span class="pl-title">${t.title}</span>
-      <span class="pl-dur" id="dur-${i}">--:--</span>`;
-    row.addEventListener("click", () => { currentIndex = i; loadTrack(true); });
-    playlistInner.appendChild(row);
-  });
+// heart: breaks every 5-10s, then heals
+function crack(){
+  document.querySelectorAll('.hrt').forEach(h=>h.classList.add('broken'));
+  document.querySelectorAll('.icon').forEach(i=>i.classList.add('shake'));
+  setTimeout(()=>document.querySelectorAll('.icon').forEach(i=>i.classList.remove('shake')),340);
+  setTimeout(()=>document.querySelectorAll('.hrt').forEach(h=>h.classList.remove('broken')),1400);
+  setTimeout(crack,5000+Math.random()*5000);
 }
+setTimeout(crack,2500);
 
-function buildShuffle() {
-  shuffleOrder = [...Array(TRACKS.length).keys()].sort(() => Math.random() - 0.5);
+// kits flash purple from time to time: a wave across the cards
+function kitPulse(){
+  const els=[...document.querySelectorAll(window.innerWidth>860?'.kit':'.mobile .lk')];
+  els.forEach((el,i)=>setTimeout(()=>{el.classList.remove('glow');void el.offsetWidth;el.classList.add('glow')},i*450));
+  setTimeout(kitPulse,6000+Math.random()*5000);
 }
-buildShuffle();
+setTimeout(kitPulse,3500);
 
-const fmt = s => isFinite(s)
-  ? `${Math.floor(s/60)}:${String(Math.floor(s%60)).padStart(2,"0")}`
-  : "--:--";
+// ── Beats player ──
+// Track list comes from beats.json (rebuild it with scripts/update-beats.sh).
+// Names follow "<title> <bpm> <key> nika00 <collab>.mp3".
+const $ = id => document.getElementById(id);
+const BARS = 90;
+const audio = new Audio();
+audio.preload = 'none';
+let T = [], cur = 0, peaksCache = {}, actx = null;
 
-function loadTrack(play = false) {
-  const t = TRACKS[currentIndex];
-  audio.src = t.file;
-  playerTitle.textContent = t.title;
-  playerSub.textContent   = "NIKA00 · 0:00 / --:--";
-  progressFill.style.width = "0%";
-  document.querySelectorAll(".pl-track").forEach(r => {
-    r.classList.toggle("active", +r.dataset.index === currentIndex);
-    r.classList.remove("playing");
-  });
-  if (play) {
-    audio.play().then(() => { isPlaying = true; syncPlayUI(); }).catch(() => {});
-  }
+function parse(file) {
+  const base = file.replace(/\.mp3$/i, '');
+  const m = base.match(/^(.*?)\s+(\d{2,3})(?:\s+([a-g]#?(?:min|maj)))?\s+nika00\s*(.*)$/i);
+  if (!m) return { file, t: base, bpm: '', key: '', ft: '' };
+  return { file, t: m[1], bpm: m[2], key: (m[3] || '').replace(/^[a-g]/, c => c.toUpperCase()), ft: m[4] || '' };
 }
-
-function syncPlayUI() {
-  playerBar.classList.toggle("playing", isPlaying);
-  btnPlay.innerHTML = isPlaying
-    ? `<svg viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>`
-    : `<svg viewBox="0 0 24 24" fill="currentColor"><polygon points="5,3 19,12 5,21"/></svg>`;
-  document.querySelectorAll(".pl-track").forEach(r => {
-    r.classList.toggle("playing", isPlaying && +r.dataset.index === currentIndex);
-  });
+function hash(s) { let h = 0; for (const c of s) h = (h * 31 + c.charCodeAt(0)) | 0; return h; }
+function fakePeaks(s) {  // placeholder shape until the real waveform is decoded
+  let h = hash(s);
+  return Array.from({ length: BARS }, (_, i) => { h = (h * 1103515245 + 12345) & 0x7fffffff; return .15 + (h % 100) / 100 * .35 * (Math.sin(Math.PI * i / BARS) * .5 + .5); });
 }
+function fmt(s) { s = Math.max(0, Math.floor(s || 0)); return `${Math.floor(s / 60)}:${String(s % 60).padStart(2, '0')}`; }
+function url(t) { return 'beats/' + encodeURIComponent(t.file); }
 
-btnPlay.addEventListener("click", () => {
-  if (!audio.src || audio.src === location.href) { loadTrack(true); return; }
-  if (isPlaying) {
-    audio.pause(); isPlaying = false; syncPlayUI();
-  } else {
-    audio.play().then(() => { isPlaying = true; syncPlayUI(); }).catch(() => { isPlaying = false; syncPlayUI(); });
-  }
-});
+function drawWave(peaks) { $('wave').innerHTML = peaks.map(p => `<i style="height:${Math.max(8, p * 100)}%"></i>`).join(''); paint(); }
 
-function nextTrack() {
-  const pos = shuffleOrder.indexOf(currentIndex);
-  currentIndex = shuffleOrder[(pos + 1) % shuffleOrder.length];
-  loadTrack(true);
-}
-function prevTrack() {
-  if (audio.currentTime > 3) { audio.currentTime = 0; return; }
-  const pos = shuffleOrder.indexOf(currentIndex);
-  currentIndex = shuffleOrder[(pos - 1 + shuffleOrder.length) % shuffleOrder.length];
-  loadTrack(true);
-}
-
-btnNext.addEventListener("click", nextTrack);
-btnPrev.addEventListener("click", prevTrack);
-audio.addEventListener("ended", nextTrack);
-
-function closePlaylist() {
-  playlistPanel.classList.remove("open");
-  playerBar.classList.remove("connected");
-  btnList.classList.remove("active");
-}
-
-btnList.addEventListener("click", e => {
-  e.stopPropagation();
-  const isOpen = playlistPanel.classList.contains("open");
-  if (isOpen) {
-    closePlaylist();
-  } else {
-    playlistPanel.classList.add("open");
-    playerBar.classList.add("connected");
-    btnList.classList.add("active");
-    loadDurations();
-    const active = playlistInner.querySelector(".pl-track.active");
-    if (active) active.scrollIntoView({ block: "nearest", behavior: "smooth" });
-  }
-});
-
-document.addEventListener("click", e => {
-  const playerEl = document.getElementById("player");
-  if (!playerEl.contains(e.target)) closePlaylist();
-});
-
-let rafProgress = null;
-audio.addEventListener("timeupdate", () => {
-  if (rafProgress) return;
-  rafProgress = requestAnimationFrame(() => {
-    rafProgress = null;
-    if (!audio.duration) return;
-    const pct = (audio.currentTime / audio.duration) * 100;
-    progressFill.style.width = pct + "%";
-    seekInput.value = pct;
-    playerSub.textContent = `NIKA00 · ${fmt(audio.currentTime)} / ${fmt(audio.duration)}`;
-  });
-});
-
-seekInput.addEventListener("input", () => {
-  if (audio.duration) audio.currentTime = (seekInput.value / 100) * audio.duration;
-}, { passive: true });
-
-let durationsLoaded = false;
-function loadDurations() {
-  if (durationsLoaded) return;
-  durationsLoaded = true;
-  const BATCH = 4;
-  let idx = 0;
-  function nextBatch() {
-    const end = Math.min(idx + BATCH, TRACKS.length);
-    for (let i = idx; i < end; i++) {
-      (function(i) {
-        const a = new Audio();
-        a.preload = "metadata";
-        a.src = TRACKS[i].file;
-        a.addEventListener("loadedmetadata", () => {
-          const el = document.getElementById(`dur-${i}`);
-          if (el) el.textContent = fmt(a.duration);
-        }, { once: true });
-      })(i);
+async function loadPeaks(t) {
+  if (peaksCache[t.file]) return drawWave(peaksCache[t.file]);
+  drawWave(fakePeaks(t.t));
+  try {
+    actx = actx || new (window.AudioContext || window.webkitAudioContext)();
+    const buf = await (await fetch(url(t))).arrayBuffer();
+    const data = (await actx.decodeAudioData(buf)).getChannelData(0);
+    const step = Math.floor(data.length / BARS), peaks = [];
+    for (let i = 0; i < BARS; i++) {
+      let max = 0;
+      for (let j = i * step, e = j + step; j < e; j += 16) { const v = Math.abs(data[j]); if (v > max) max = v; }
+      peaks.push(max);
     }
-    idx = end;
-    if (idx < TRACKS.length) setTimeout(nextBatch, 200);
-  }
-  nextBatch();
+    const top = Math.max(...peaks) || 1;
+    peaksCache[t.file] = peaks.map(p => p / top);
+    if (T[cur] === t) drawWave(peaksCache[t.file]);
+  } catch (e) { /* keep placeholder */ }
 }
 
-const DEFAULT_VOL = 0.5;
-const volSlider = document.getElementById("volume-slider");
-volSlider.value = Math.round(DEFAULT_VOL * 100);
-volSlider.addEventListener("input", () => { audio.volume = volSlider.value / 100; });
+function renderList() {
+  const playing = !audio.paused;
+  $('list').innerHTML = T.map((y, i) => `<div class="row${i === cur ? ' on' : ''}" data-i="${i}"><span class="n">${i === cur && playing ? '<span class="eq"><b></b><b></b><b></b></span>' : String(i + 1).padStart(2, '0')}</span><span class="t">${y.t}${y.ft ? ` <span class="ft">· ${y.ft}</span>` : ''}</span><span class="m">${y.bpm}</span><span class="m">${y.key}</span></div>`).join('');
+}
+function renderNow() {
+  const x = T[cur];
+  $('ttl').textContent = x.t;
+  $('meta').innerHTML = (x.bpm ? `<span class="chip">${x.bpm} BPM</span>` : '') + (x.key ? `<span class="chip">${x.key}</span>` : '') + (x.ft ? `<span class="chip">w/ ${x.ft}</span>` : '');
+  $('cover').style.setProperty('--a', (hash(x.t) % 360) + 'deg');
+  $('count').textContent = `${cur + 1} / ${T.length}`;
+  renderList();
+}
+function paint() {
+  const d = audio.duration || 0, p = d ? audio.currentTime / d : 0;
+  const w = [...$('wave').children], n = Math.round(p * w.length);
+  w.forEach((b, i) => b.classList.toggle('p', i < n));
+  $('time').textContent = `${fmt(audio.currentTime)} / ${d ? fmt(d) : '0:00'}`;
+}
+function setIcon() { $('pi').innerHTML = audio.paused ? '<path d="M7 4v16l13-8z"/>' : '<path d="M6 4h4v16H6zM14 4h4v16h-4z"/>'; }
 
-buildPlaylist();
-loadTrack(false);
-audio.volume = DEFAULT_VOL;
+function go(i, autoplay) {
+  cur = (i + T.length) % T.length;
+  audio.src = url(T[cur]);
+  renderNow(); loadPeaks(T[cur]); paint();
+  if (autoplay) audio.play().catch(() => {});
+}
+function toggle() {
+  if (!audio.src) return go(cur, true);
+  audio.paused ? audio.play().catch(() => {}) : audio.pause();
+}
 
+audio.addEventListener('play', () => { setIcon(); renderList(); });
+audio.addEventListener('pause', () => { setIcon(); renderList(); });
+audio.addEventListener('timeupdate', paint);
+audio.addEventListener('loadedmetadata', paint);
+audio.addEventListener('ended', () => go(cur + 1, true));
+$('play').onclick = toggle;
+$('next').onclick = () => go(cur + 1, !audio.paused);
+$('prev').onclick = () => (audio.currentTime > 3 ? (audio.currentTime = 0) : go(cur - 1, !audio.paused));
+$('list').onclick = e => { const r = e.target.closest('.row'); if (r) +r.dataset.i === cur && audio.src ? toggle() : go(+r.dataset.i, true); };
+$('wave').onclick = e => {
+  if (!audio.src) go(cur, false);
+  const r = $('wave').getBoundingClientRect(), p = (e.clientX - r.left) / r.width;
+  const seek = () => { audio.currentTime = p * audio.duration; paint(); };
+  audio.duration ? seek() : audio.addEventListener('loadedmetadata', seek, { once: true });
+};
+
+if (window.innerWidth > 860) {  // the player is desktop-only
+  fetch('beats.json').then(r => r.json()).then(files => {
+    T = files.map(parse);
+    $('count2').textContent = `${T.length} tracks`;
+    renderNow(); drawWave(fakePeaks(T[0].t));
+  });
+}
 </script>
 </body>
 </html>
